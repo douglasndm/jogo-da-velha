@@ -1,8 +1,8 @@
-﻿using System;
-using Windows.Foundation.Metadata;
+﻿using Jogo_da_Velha.Classes;
+using Jogo_da_Velha.Models;
+using System;
 using Windows.UI;
 using Windows.UI.Popups;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -10,31 +10,16 @@ namespace Jogo_da_Velha
 {
     public sealed partial class MainPage : Page
     {
-        string jogador1, jogador2;
-        int placar1, placar2, velhas, vez;
+        Player[] players = new Player[2];
+
+        int velhas, vez;
         int movimentos = 0;
 
         public MainPage()
         {
             this.InitializeComponent();
 
-            //PC customization
-            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.ApplicationView"))
-            {
-                var titleBar = ApplicationView.GetForCurrentView().TitleBar;
-                if (titleBar != null)
-                {
-                    titleBar.ButtonBackgroundColor = Colors.DeepSkyBlue;
-                    titleBar.ButtonForegroundColor = Colors.White;
-                    titleBar.BackgroundColor = Colors.DeepSkyBlue;
-                    titleBar.ForegroundColor = Colors.White;
-
-                    titleBar.InactiveBackgroundColor = Colors.DeepSkyBlue;
-                    titleBar.InactiveForegroundColor = Colors.White;
-                    titleBar.ButtonInactiveBackgroundColor = Colors.DeepSkyBlue;
-                    titleBar.ButtonInactiveForegroundColor = Colors.White;
-                }
-            }
+            Customization.ChangeTitleBarColor(Colors.DeepSkyBlue, Colors.White);
 
             DesativarTodosBotoes();
             GridJogo.Opacity = 0;
@@ -53,11 +38,11 @@ namespace Jogo_da_Velha
                 (string)button1.Content == "X" && (string)button5.Content == "X" && (string)button9.Content == "X" ||
                 (string)button3.Content == "X" && (string)button5.Content == "X" && (string)button7.Content == "X")
             {
-                placar1++;
+                players[0].Points++;
                 AtualizarPlacar();
                 DesativarTodosBotoes();
 
-                var dialog = new MessageDialog(jogador1 + " ganhou essa rodada!");
+                var dialog = new MessageDialog(players[0].Name + " ganhou essa rodada!");
                 await dialog.ShowAsync();
 
                 NovaPartida();
@@ -73,11 +58,11 @@ namespace Jogo_da_Velha
                      (string)button1.Content == "O" && (string)button5.Content == "O" && (string)button9.Content == "O" ||
                      (string)button3.Content == "O" && (string)button5.Content == "O" && (string)button7.Content == "O")
             {
-                placar2++;
+                players[1].Points++;
                 AtualizarPlacar();
                 DesativarTodosBotoes();
 
-                var dialog = new MessageDialog(jogador2 + " ganhou essa rodada!");
+                var dialog = new MessageDialog(players[1].Name + " ganhou essa rodada!");
                 await dialog.ShowAsync();
 
                 NovaPartida();
@@ -119,10 +104,13 @@ namespace Jogo_da_Velha
         {
             if (textBox_jogador1.Text != "" && textBox_jogador2.Text != "")
             {
-                jogador1 = textBox_jogador1.Text;
-                jogador2 = textBox_jogador2.Text;
+                players[0] = new Player();
+                players[1] = new Player();
 
-                NovoJogo(jogador1, jogador2);
+                players[0].Name = textBox_jogador1.Text.Trim();
+                players[1].Name = textBox_jogador2.Text.Trim();
+
+                NovoJogo();
             }
             else
             {
@@ -131,10 +119,10 @@ namespace Jogo_da_Velha
             }
         }
 
-        private void NovoJogo(string jogador1, string jogador2)
+        private void NovoJogo()
         {
-            placar1 = 0;
-            placar2 = 0;
+            players[0].Points = 0;
+            players[1].Points = 0;
 
             vez = 1;
 
@@ -182,8 +170,8 @@ namespace Jogo_da_Velha
 
         private void AtualizarPlacar()
         {
-            TextBlockPlacar1.Text = String.Format("{0} está com {1} pontos", jogador1, placar1);
-            TextBlockPlacar2.Text = String.Format("{0} está com {1} pontos", jogador2, placar2);
+            TextBlockPlacar1.Text = String.Format("{0} está com {1} pontos", players[0].Name, players[0].Points);
+            TextBlockPlacar2.Text = String.Format("{0} está com {1} pontos", players[1].Name, players[1].Points);
 
             TextBlockVelhas.Text = String.Format("{0} velhas", velhas);
         }
@@ -193,10 +181,10 @@ namespace Jogo_da_Velha
             switch (vez)
             {
                 case 1:
-                    TextBlockVez.Text = string.Format("Vez de " + jogador1);
+                    TextBlockVez.Text = string.Format("Vez de " + players[0].Name);
                     break;
                 default:
-                    TextBlockVez.Text = string.Format("Vez de " + jogador2);
+                    TextBlockVez.Text = string.Format("Vez de " + players[1].Name);
                     break;
             }
         }
@@ -207,11 +195,11 @@ namespace Jogo_da_Velha
             {
                 case 1:
                     vez = 2;
-                    TextBlockVez.Text = string.Format("Vez de " + jogador1);
+                    TextBlockVez.Text = string.Format("Vez de " + players[0].Name);
                     break;
                 default:
                     vez = 1;
-                    TextBlockVez.Text = string.Format("Vez de " + jogador2);
+                    TextBlockVez.Text = string.Format("Vez de " + players[1].Name);
                     break;
             }
         }
