@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="fa5eb77c-2f57-4ade-8b1b-3efe6a4f46df"
-    Publisher="CN=Dougl"
-    Version="1.0.0.0" />
+    Name="59904DouglasNunesdeMattos.Jogodavelhaparaduaspesso"
+    Publisher="CN=5FC31E70-7041-4965-9300-C1DFDB4D9F0F"
+    Version="2.1.1.0" />
 
-  <mp:PhoneIdentity PhoneProductId="fa5eb77c-2f57-4ade-8b1b-3efe6a4f46df" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="35b8b440-50e3-4971-a3eb-8bc237a7206c" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>Jogo da Velha</DisplayName>
-    <PublisherDisplayName>Dougl</PublisherDisplayName>
+    <DisplayName>Jogo da velha para duas pessoas</DisplayName>
+    <PublisherDisplayName>Douglas Nunes de Mattos</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -32,7 +32,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="Jogo_da_Velha.App">
       <uap:VisualElements
-        DisplayName="Jogo da Velha"
+        DisplayName="Jogo da velha para duas pessoas"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
         Description="Jogo da Velha"

@@ -5,7 +5,6 @@
     xmlns:local="using:Jogo_da_Velha"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:UI="using:Microsoft.Advertising.WinRT.UI"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -57,9 +56,9 @@
                         <Setter Target="GridDados.(Grid.ColumnSpan)" Value="2" />
                         <Setter Target="GridDados.(Grid.RowSpan)" Value="1" />
 
-                        <Setter Target="AdControl_1.(AdControl.Width)" Value="320" />
+                        <!--<Setter Target="AdControl_1.(AdControl.Width)" Value="320" />
                         <Setter Target="AdControl_1.(AdControl.Height)" Value="50" />
-                        <Setter Target="AdControl_1.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="AdControl_1.(Grid.ColumnSpan)" Value="2" />-->
 
                         <Setter Target="GridJogo.(Grid.Column)" Value="0" />
                         <Setter Target="GridJogo.(Grid.ColumnSpan)" Value="2" />
@@ -86,9 +85,9 @@
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
-                        <Setter Target="AdControl_1.(AdControl.Width)" Value="300" />
+                        <!--<Setter Target="AdControl_1.(AdControl.Width)" Value="300" />
                         <Setter Target="AdControl_1.(AdControl.Height)" Value="250" />
-                        <Setter Target="AdControl_1.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="AdControl_1.(Grid.ColumnSpan)" Value="1" />-->
 
                         <Setter Target="button1.(Button.Style)" Value="{StaticResource ButtonGameTablet}" />
                         <Setter Target="button2.(Button.Style)" Value="{StaticResource ButtonGameTablet}" />
@@ -110,9 +109,9 @@
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
-                        <Setter Target="AdControl_1.(AdControl.Width)" Value="300" />
+                        <!--<Setter Target="AdControl_1.(AdControl.Width)" Value="300" />
                         <Setter Target="AdControl_1.(AdControl.Height)" Value="250" />
-                        <Setter Target="AdControl_1.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="AdControl_1.(Grid.ColumnSpan)" Value="1" />-->
 
                         <Setter Target="button1.(Button.Style)" Value="{StaticResource ButtonGame}" />
                         <Setter Target="button2.(Button.Style)" Value="{StaticResource ButtonGame}" />
@@ -147,7 +146,13 @@
             </StackPanel>
 
             <StackPanel Grid.Row="1" Name="Placar" Visibility="Collapsed" Padding="10">
-                <TextBlock Name="TextBlockPlacar1" FontFamily="Segoe UI Black" FontSize="18" Text="Jogador 1 está com 0 pontos" CharacterSpacing="40" FontWeight="Light" />
+                <TextBlock 
+                    Name="TextBlockPlacar1" 
+                    FontFamily="Segoe UI Black" 
+                    FontSize="18" 
+                    FontWeight="Light"
+                    CharacterSpacing="40"
+                    Text="Jogador 1 está com 0 pontos"  />
                 <TextBlock Name="TextBlockPlacar2" FontFamily="Segoe UI Black" FontSize="18" Text="Jogador 2 está com 0 pontos" CharacterSpacing="40" FontWeight="Light" />
                 <TextBlock Name="TextBlockVelhas" FontFamily="Segoe UI Black" FontSize="18" Text="Velhas: 0" CharacterSpacing="40" FontWeight="Light" />
 
@@ -155,7 +160,7 @@
             </StackPanel>
         </Grid>
 
-        <UI:AdControl    
+        <!--<UI:AdControl    
             Grid.Row="2"
             x:Name="AdControl_1" 
             ApplicationId="3f83fe91-d6be-434d-a0ae-7351c5a997f1"
@@ -163,7 +168,7 @@
             Width="300"
             Height="250"
             HorizontalAlignment="Center"
-            VerticalAlignment="Bottom" />
+            VerticalAlignment="Bottom" />-->
 
         <Grid Grid.Column="1" Grid.RowSpan="3" Name="GridJogo" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
