@@ -1,19 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+
+// APPCENTER IMPORTS
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using System.IO;
+using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace Jogo_da_Velha
 {
@@ -37,8 +35,29 @@ namespace Jogo_da_Velha
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
+
+            // REALIZA A LEITURA DO ARQUIVO DE CONFIGURAÇÃO ONDE ESTÃO CONTIDAS CHAVES DE ACESSOS DA APLICAÇÃO
+            Windows.Storage.StorageFolder storageFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+
+            try
+            {
+                Windows.Storage.StorageFile settingsFile = await storageFolder.GetFileAsync("ApplicationConfig.json");
+                
+                using(StreamReader r = new StreamReader(Path.Combine(storageFolder.Path, "ApplicationConfig.json")))
+                {
+                    Models.Configurations result = JsonConvert.DeserializeObject<Models.Configurations>(await r.ReadToEndAsync());
+
+                    // INICIA O SERVIÇO DE TELEMETRIA E PUSH NOTIFICATION DO VS MOBILE CENTER
+                    AppCenter.Start(result.AppCenter_Key, typeof(Analytics), typeof(Crashes));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
