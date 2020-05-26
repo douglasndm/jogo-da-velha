@@ -5,6 +5,7 @@
     xmlns:local="using:Jogo_da_Velha"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:adduplex="using:AdDuplex"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -160,15 +161,11 @@
             </StackPanel>
         </Grid>
 
-        <!--<UI:AdControl    
+        <adduplex:AdControl 
             Grid.Row="2"
-            x:Name="AdControl_1" 
-            ApplicationId="3f83fe91-d6be-434d-a0ae-7351c5a997f1"
-            AdUnitId="test"
-            Width="300"
-            Height="250"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Bottom" />-->
+            AdUnitId="187407" 
+            AppKey="5fd5a360-fbc0-4c5f-b9b4-5ff6beb77560" />
+
 
         <Grid Grid.Column="1" Grid.RowSpan="3" Name="GridJogo" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>

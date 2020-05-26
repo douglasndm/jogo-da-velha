@@ -14,7 +14,6 @@ namespace Jogo_da_Velha
 
         int velhas, vez;
         int movimentos = 0;
-
         public MainPage()
         {
             this.InitializeComponent();
@@ -22,7 +21,7 @@ namespace Jogo_da_Velha
             Customization.ChangeTitleBarColor(Colors.DeepSkyBlue, Colors.White);
 
             DesativarTodosBotoes();
-            GridJogo.Opacity = 0;
+            GridJogo.Opacity = 0;        
         }
 
         private async void VerificarSeJogadorGanhor()
